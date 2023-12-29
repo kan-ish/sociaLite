@@ -1,8 +1,8 @@
 import User from "../db/models/User.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-/* REGISTER ROUTE */
-
+/* REGISTER */
 export const register = async (req, res) => {
 	try {
 		const {
@@ -34,6 +34,29 @@ export const register = async (req, res) => {
 
 		const savedUser = await newUser.save();
 		res.status(201).json(savedUser);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ error: err.message });
+	}
+};
+
+/* LOGIN */
+export const login = async (req, res) => {
+	try {
+		const { email, password } = req.body;
+		const user = await User.findOne({ email: email });
+
+		if (!user)
+			return res.status(400).json({ message: "User does not exist." });
+
+		const isMatch = bcrypt.compare(password, user.password);
+
+		if (!isMatch)
+			return res.status(400).json({ message: "Invalid credentials." });
+
+		const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+		res.status(200).json({ token, user });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: err.message });
