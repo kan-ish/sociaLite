@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 
+import { register } from "./controllers/auth.js";
+
 dotenv.config();
 
 const app = express();
@@ -24,10 +26,7 @@ async function connectToMongoDB() {
 connectToMongoDB();
 
 /* Routes */
-app.post("/auth/register", function (req, res) {
-	console.log("received");
-	res.send("received");
-});
+app.post("/auth/register", register);
 
 app.listen(process.env.APP_PORT, function () {
 	console.log(`Server running on Port ${process.env.APP_PORT}`);
