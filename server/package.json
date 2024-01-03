@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"start": "if [ -x \"$(command -v nodemon)\" ]; then nodemon index.js; else node index.js; fi",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
