@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 
-import userRoutes from "./routes/auth.js";
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
 
 dotenv.config();
 
@@ -22,11 +23,11 @@ async function connectToMongoDB() {
 			console.error(err);
 		});
 }
-
 connectToMongoDB();
 
 /* Routes */
-app.use("/auth", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 app.listen(process.env.APP_PORT, function () {
 	console.log(`Server running on Port ${process.env.APP_PORT}`);
