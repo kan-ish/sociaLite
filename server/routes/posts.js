@@ -1,4 +1,5 @@
 import express from "express";
+import upload from "../middlewares/multerImageUpload.js";
 
 import { authenticateUserToken } from "../middlewares/autenticateUserToken.js";
 import {
@@ -18,6 +19,6 @@ router.get("/:userId/posts", authenticateUserToken, getUserPosts);
 router.patch("/:id/like", authenticateUserToken, likePost);
 
 /* CREATE */
-router.post("/", authenticateUserToken, createPost);
+router.post("/", authenticateUserToken, upload.single("image"), createPost);
 
 export default router;
