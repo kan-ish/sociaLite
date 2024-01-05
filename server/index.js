@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
+import postsRoutes from "./routes/posts.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ connectToMongoDB();
 /* Routes */
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
+app.use("/posts", postsRoutes);
 
 app.listen(process.env.APP_PORT, function () {
 	console.log(`Server running on Port ${process.env.APP_PORT}`);
