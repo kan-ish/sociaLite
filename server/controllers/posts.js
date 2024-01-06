@@ -3,7 +3,8 @@ import User from "../db/models/User.js";
 
 export const createPost = async (req, res) => {
 	try {
-		const { userId, description, picturePath } = req.body;
+		const userId = req.user.id;
+		const { description, picturePath } = req.body;
 		const user = await User.findById(userId);
 
 		const newPost = new Post({
@@ -27,11 +28,23 @@ export const createPost = async (req, res) => {
 };
 
 export const getFeedPosts = (req, res) => {
-	return;
+	try {
+		const allPosts = Post.find();
+		res.status(200).json({ allPosts });
+	} catch (err) {
+		res.status(404).json({ message: err.message });
+	}
 };
 
 export const getUserPosts = (req, res) => {
-	return;
+	try {
+		const { userId } = req.params;
+		const userPosts = Post.find({ userId });
+
+		res.status(200).json({ userPosts });
+	} catch (err) {
+		res.status(404).json({ message: err.message });
+	}
 };
 
 export const likePost = (req, res) => {
