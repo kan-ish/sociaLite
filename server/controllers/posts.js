@@ -27,19 +27,19 @@ export const createPost = async (req, res) => {
 	}
 };
 
-export const getFeedPosts = (req, res) => {
+export const getFeedPosts = async (req, res) => {
 	try {
-		const allPosts = Post.find();
+		const allPosts = await Post.find();
 		res.status(200).json({ allPosts });
 	} catch (err) {
 		res.status(404).json({ message: err.message });
 	}
 };
 
-export const getUserPosts = (req, res) => {
+export const getUserPosts = async (req, res) => {
 	try {
 		const { userId } = req.params;
-		const userPosts = Post.find({ userId });
+		const userPosts = await Post.find({ userId });
 
 		res.status(200).json({ userPosts });
 	} catch (err) {
@@ -47,6 +47,19 @@ export const getUserPosts = (req, res) => {
 	}
 };
 
-export const likePost = (req, res) => {
-	return;
+export const toggleLike = async (req, res) => {
+	try {
+		const userId = req.user.id;
+		const { id } = req.params;
+		const post = await Post.findById(id);
+		const isLiked = post.likes.get(userId);
+
+		isLiked ? post.likes.delete(userId) : post.likes.set(userId, true);
+
+		const updatedPost = await post.save({ new: true });
+
+		res.status(200).json({ updatedPost });
+	} catch (err) {
+		res.status(404).json({ message: err.message });
+	}
 };

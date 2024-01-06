@@ -6,7 +6,7 @@ import {
 	createPost,
 	getFeedPosts,
 	getUserPosts,
-	likePost,
+	toggleLike,
 } from "../controllers/posts.js";
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.get("/", authenticateUserToken, getFeedPosts);
 router.get("/:userId/posts", authenticateUserToken, getUserPosts);
 
 /* UPDATE */
-router.patch("/:id/like", authenticateUserToken, likePost);
+router.patch("/:id/like", authenticateUserToken, toggleLike);
 
 /* CREATE */
 router.post("/", authenticateUserToken, upload.single("image"), createPost);
