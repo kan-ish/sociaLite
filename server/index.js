@@ -19,13 +19,13 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 async function connectToMongoDB() {
-	mongoose
-		.connect(process.env.DB_URL)
-		.then(() => console.log("Connected to MongoDB successfully"))
-		.catch((err) => {
-			console.log("MongoDB connection ERROR");
-			console.error(err);
-		});
+	try {
+		await mongoose.connect(process.env.DB_URL);
+		console.log("Connected to MongoDB successfully");
+	} catch (err) {
+		console.log("MongoDB connection ERROR");
+		console.error(err);
+	}
 }
 connectToMongoDB();
 
