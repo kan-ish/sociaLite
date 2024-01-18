@@ -1,0 +1,37 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px;
+
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.navbarLeft,
+.navbarRight,
+.buttonCluster {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.navbarLeft input {
+	max-width: 200px;
+	width: 120px;
+}
+
+.buttonCluster * {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: fit-content;
+	height: 35px;
+	padding: 0 10px;
+	border-radius: 4px;
+	background-color: #e5e5e5;
+}
+
+.searchBar input {
+	background-color: #d3d3d3;
+}
