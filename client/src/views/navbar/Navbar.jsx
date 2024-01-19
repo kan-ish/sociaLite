@@ -98,6 +98,60 @@ const Navbar = () => {
 					<Menu />
 				</IconButton>
 			)}
+
+			{/* Sidebar for mobile devices */}
+			{isMobileDevice && isSideBarOpen && (
+				<Box
+					position="fixed"
+					right="0"
+					bottom="0"
+					height="100%"
+					zIndex="10"
+					maxWidth="500px"
+					minWidth="300px"
+					backgroundColor={backgroundDefault}>
+					<Box display="flex" justifyContent="flex-end" p="1rem">
+						<IconButton
+							onClick={() => setIsSidebarOpen(!isSideBarOpen)}>
+							<Close />
+						</IconButton>
+					</Box>
+
+					{/* Mobile menu items */}
+					<FlexboxSpaceBetween
+						disple="flex"
+						flexDirection="column"
+						justifyContent="center"
+						alignItems="center"
+						gap="3rem">
+						<Message sx={{ fontSize: "25px" }} />
+						<Notifications sx={{ fontSize: "25px" }} />
+						<Help sx={{ fontSize: "25px" }} />
+						<FormControl variant="standard" value="Kanishk Singh">
+							<Select
+								value="Kanishk Singh"
+								sx={{
+									backgroundColor: neutralLight,
+									width: "150px",
+									borderRadius: "0.25rem",
+									p: "0.25rem 1rem",
+									"& .MuiSvgIcon-root": {
+										pr: "0.25rem",
+										width: "3rem",
+									},
+									"& .MuiSelect-select:focus": {
+										backgroundColor: neutralLight,
+									},
+								}}>
+								<MenuItem value="Kanishk Singh">
+									<Typography>Kanishk Singh</Typography>
+								</MenuItem>
+								<MenuItem>Logout</MenuItem>
+							</Select>
+						</FormControl>
+					</FlexboxSpaceBetween>
+				</Box>
+			)}
 		</FlexboxSpaceBetween>
 	);
 };
