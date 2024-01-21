@@ -52,8 +52,24 @@ const CustomForm = () => {
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
 
 	const register = async (values, onSubmitProps) => {
-		console.log(values, onSubmitProps);
-		navigate("/home");
+		const formData = new FormData();
+		for (let value in values) {
+			formData.append(value, values[value]);
+		}
+		formData.append("picturePath", values.image.name);
+
+		const res = await fetch("http://localhost:6001/auth/register", {
+			method: "POST",
+			body: formData,
+		});
+		const resData = await res.json();
+		onSubmitProps.resetForm();
+
+		console.log(resData)
+
+		if (resData.user) {
+			setPageType("login");
+		}
 	};
 
 	const login = async (values, onSubmitProps) => {
