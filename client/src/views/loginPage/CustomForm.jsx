@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
+import Dropzone from "react-dropzone";
 
 import FlexboxSpaceBetween from "../../components/FlexboxSpaceBetween";
+
 import {
 	Box,
 	Button,
@@ -10,11 +12,23 @@ import {
 	Typography,
 	useTheme,
 } from "@mui/material";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 const initialValuesLogin = {
 	email: "",
 	password: "",
 };
+
+const initialValuesRegister = {
+	firstName: "",
+	lastName: "",
+	email: "",
+	password: "",
+	location: "",
+	occupation: "",
+	image: "",
+};
+
 
 const CustomForm = () => {
 	const [pageType, setPageType] = useState("register");
@@ -24,7 +38,12 @@ const CustomForm = () => {
 	const handleFormSubmit = async (values, onSubmitProps) => {};
 
 	return (
-		<Formik onSubmit={handleFormSubmit} initialValues={initialValuesLogin}>
+		<Formik
+			onSubmit={handleFormSubmit}
+			initialValues={
+				pageType === "login" ? initialValuesLogin : initialValuesRegister
+			}
+		>
 			{({
 				values,
 				errors,
@@ -32,6 +51,7 @@ const CustomForm = () => {
 				handleBlur,
 				handleChange,
 				handleSubmit,
+				setFieldValue,
 			}) => {
 				return (
 					<Form onSubmit={handleSubmit}>
@@ -95,6 +115,42 @@ const CustomForm = () => {
 										helperText={touched.occupation && errors.occupation}
 										sx={{ gridColumn: "span 4" }}
 									/>
+
+									<Box
+										gridColumn="span 4"
+										border={`1px solid ${theme.palette.neutral.medium}`}
+										borderRadius="5px"
+										p="1rem"
+									>
+										<Dropzone
+											acceptedFiles=".jpg,.jpeg,.png"
+											multiple={false}
+											onDrop={(acceptedFiles) =>
+												setFieldValue("image", acceptedFiles[0])
+											}
+										>
+											{({ getRootProps, getInputProps }) => {
+												return (
+													<Box
+														{...getRootProps()}
+														border={`2px dashed ${theme.palette.primary.main}`}
+														p="1rem"
+														sx={{ "&:hover": { cursor: "pointer" } }}
+													>
+														<input {...getInputProps()} />
+														{!values.image ? (
+															<p>Add picture Here</p>
+														) : (
+															<FlexboxSpaceBetween>
+																<Typography>{values.image.name}</Typography>
+																<EditOutlinedIcon />
+															</FlexboxSpaceBetween>
+														)}
+													</Box>
+												);
+											}}
+										</Dropzone>
+									</Box>
 								</>
 							)}
 
