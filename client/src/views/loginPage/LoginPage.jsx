@@ -1,4 +1,5 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import CustomForm from "./CustomForm";
 
 const LoginPage = () => {
 	const theme = useTheme();
@@ -30,6 +31,9 @@ const LoginPage = () => {
 						As if there weren&apos;t enough social media platforms already
 					</small>
 				</Typography>
+
+				{/* Form */}
+				<CustomForm />
 			</Box>
 		</Box>
 	);

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import {
 	Box,
@@ -29,7 +28,7 @@ const Navbar = () => {
 	const theme = useTheme();
 
 	const neutralLight = theme.palette.neutral.light;
-	const neutralDark = theme.palette.neutral.dark;
+	// const neutralDark = theme.palette.neutral.dark;
 	const backgroundDefault = theme.palette.background.default;
 	const primaryLight = theme.palette.primary.light;
 	const backgroundAlt = theme.palette.background.alt;
