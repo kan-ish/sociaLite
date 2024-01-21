@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 import HomePage from "./views/homePage/HomePage";
 import LoginPage from "./views/loginPage/LoginPage";
@@ -9,6 +11,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./utils/theme";
 
 function App() {
+	const isCurrentUser = useSelector((state) => state.token);
 	const theme = createTheme(themeSettings());
 
 	return (
@@ -16,9 +19,18 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<Routes>
-					<Route path="/" element={<LoginPage />} />
-					<Route path="/home" element={<HomePage />} />
-					<Route path="/profile/:userid" element={<ProfilePage />} />
+					<Route
+						path="/"
+						element={isCurrentUser ? <Navigate to="/home" /> : <LoginPage />}
+					/>
+					<Route
+						path="/home"
+						element={isCurrentUser ? <HomePage /> : <Navigate to="/" />}
+					/>
+					<Route
+						path="/profile/:userid"
+						element={isCurrentUser ? <ProfilePage /> : <Navigate to="/home" />}
+					/>
 				</Routes>
 			</ThemeProvider>
 		</BrowserRouter>
