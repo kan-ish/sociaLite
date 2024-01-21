@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { setUserLogout } from "../../redux/slices/authSlice";
 
 import {
 	Box,
@@ -22,10 +26,16 @@ import {
 import FlexboxSpaceBetween from "../../components/FlexboxSpaceBetween";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const [isSideBarOpen, setIsSidebarOpen] = useState(false);
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
 
 	const theme = useTheme();
+	const currentUser = useSelector((state) => state.user);
+	// console.log(currentUser);
+	const currentUserFullName = `${currentUser.firstName} ${currentUser.lastName}`;
 
 	const neutralLight = theme.palette.neutral.light;
 	// const neutralDark = theme.palette.neutral.dark;
@@ -46,7 +56,8 @@ const Navbar = () => {
 							color: primaryLight,
 							cursor: "pointer",
 						},
-					}}>
+					}}
+				>
 					SociaLite
 				</Typography>
 				{!isMobileDevice && (
@@ -54,7 +65,8 @@ const Navbar = () => {
 						backgroundColor={neutralLight}
 						borderRadius="9px"
 						gp="3rem"
-						padding="0.1rem 1.5rem">
+						padding="0.1rem 1.5rem"
+					>
 						<InputBase placeholder="Search..." />
 						<IconButton>
 							<Search />
@@ -69,9 +81,9 @@ const Navbar = () => {
 					<Message sx={{ fontSize: "25px" }} />
 					<Notifications sx={{ fontSize: "25px" }} />
 					<Help sx={{ fontSize: "25px" }} />
-					<FormControl variant="standard" value="Kanishk Singh">
+					<FormControl variant="standard" value={currentUserFullName}>
 						<Select
-							value="Kanishk Singh"
+							value={currentUserFullName}
 							sx={{
 								backgroundColor: neutralLight,
 								width: "150px",
@@ -84,11 +96,19 @@ const Navbar = () => {
 								"& .MuiSelect-select:focus": {
 									backgroundColor: neutralLight,
 								},
-							}}>
-							<MenuItem value="Kanishk Singh">
-								<Typography>Kanishk Singh</Typography>
+							}}
+						>
+							<MenuItem value={currentUserFullName}>
+								<Typography>{currentUserFullName}</Typography>
 							</MenuItem>
-							<MenuItem>Logout</MenuItem>
+							<MenuItem
+								onClick={() => {
+									dispatch(setUserLogout());
+									navigate("/");
+								}}
+							>
+								Logout
+							</MenuItem>
 						</Select>
 					</FormControl>
 				</FlexboxSpaceBetween>
@@ -108,10 +128,10 @@ const Navbar = () => {
 					zIndex="10"
 					maxWidth="500px"
 					minWidth="300px"
-					backgroundColor={backgroundDefault}>
+					backgroundColor={backgroundDefault}
+				>
 					<Box display="flex" justifyContent="flex-end" p="1rem">
-						<IconButton
-							onClick={() => setIsSidebarOpen(!isSideBarOpen)}>
+						<IconButton onClick={() => setIsSidebarOpen(!isSideBarOpen)}>
 							<Close />
 						</IconButton>
 					</Box>
@@ -122,13 +142,14 @@ const Navbar = () => {
 						flexDirection="column"
 						justifyContent="center"
 						alignItems="center"
-						gap="3rem">
+						gap="3rem"
+					>
 						<Message sx={{ fontSize: "25px" }} />
 						<Notifications sx={{ fontSize: "25px" }} />
 						<Help sx={{ fontSize: "25px" }} />
-						<FormControl variant="standard" value="Kanishk Singh">
+						<FormControl variant="standard" value={currentUserFullName}>
 							<Select
-								value="Kanishk Singh"
+								value={currentUserFullName}
 								sx={{
 									backgroundColor: neutralLight,
 									width: "150px",
@@ -141,11 +162,20 @@ const Navbar = () => {
 									"& .MuiSelect-select:focus": {
 										backgroundColor: neutralLight,
 									},
-								}}>
-								<MenuItem value="Kanishk Singh">
+								}}
+							>
+								<MenuItem value={currentUserFullName}>
 									<Typography>Kanishk Singh</Typography>
 								</MenuItem>
-								<MenuItem>Logout</MenuItem>
+
+								<MenuItem
+									onClick={() => {
+										dispatch(setUserLogout());
+										navigate("/");
+									}}
+								>
+									Logout
+								</MenuItem>
 							</Select>
 						</FormControl>
 					</FlexboxSpaceBetween>
