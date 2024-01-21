@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Form, Formik } from "formik";
 import Dropzone from "react-dropzone";
 import * as yup from "yup";
+
 import FlexboxSpaceBetween from "../../components/FlexboxSpaceBetween";
+import { setUserLogin } from "../../redux/slices/authSlice";
 
 import {
 	Box,
@@ -47,7 +50,9 @@ const loginSchema = yup.object().shape({
 
 const CustomForm = () => {
 	const navigate = useNavigate();
-	const [pageType, setPageType] = useState("register");
+	const dispatch = useDispatch()
+
+	const [pageType, setPageType] = useState("login");
 	const theme = useTheme();
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
 
@@ -82,6 +87,11 @@ const CustomForm = () => {
 		onSubmitProps.resetForm();
 
 		if (resData.user) {
+			dispatch(setUserLogin({
+				user: resData.user,
+				token: resData.token
+			}))
+
 			navigate("/home");
 		}
 	};
