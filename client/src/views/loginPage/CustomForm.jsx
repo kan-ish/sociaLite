@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
 import Dropzone from "react-dropzone";
-
+import * as yup from "yup";
 import FlexboxSpaceBetween from "../../components/FlexboxSpaceBetween";
 
 import {
@@ -29,6 +29,21 @@ const initialValuesRegister = {
 	image: "",
 };
 
+const registerSchema = yup.object().shape({
+	firstName: yup.string().required("required"),
+	lastName: yup.string().required("required"),
+	email: yup.string().email("invalid email").required("required"),
+	password: yup.string().required("required"),
+	location: yup.string().required("required"),
+	occupation: yup.string().required("required"),
+	image: yup.string().required("required"),
+});
+
+const loginSchema = yup.object().shape({
+	email: yup.string().email("invalid email").required("required"),
+	password: yup.string().required("required"),
+});
+
 const CustomForm = () => {
 	const [pageType, setPageType] = useState("register");
 	const theme = useTheme();
@@ -42,6 +57,7 @@ const CustomForm = () => {
 			initialValues={
 				pageType === "login" ? initialValuesLogin : initialValuesRegister
 			}
+			validationSchema={pageType === "login" ? loginSchema : registerSchema}
 		>
 			{({
 				values,
