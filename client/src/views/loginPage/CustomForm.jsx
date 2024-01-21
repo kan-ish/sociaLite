@@ -29,7 +29,6 @@ const initialValuesRegister = {
 	image: "",
 };
 
-
 const CustomForm = () => {
 	const [pageType, setPageType] = useState("register");
 	const theme = useTheme();
@@ -52,6 +51,7 @@ const CustomForm = () => {
 				handleChange,
 				handleSubmit,
 				setFieldValue,
+				resetForm,
 			}) => {
 				return (
 					<Form onSubmit={handleSubmit}>
@@ -178,6 +178,7 @@ const CustomForm = () => {
 						</Box>
 
 						<Box>
+							{/* Form submit btn */}
 							<Button
 								fullWidth
 								type="submit"
@@ -191,6 +192,26 @@ const CustomForm = () => {
 							>
 								{pageType === "login" ? "LOGIN" : "REGISTER"}
 							</Button>
+
+							{/* Switch b/w Login and Register */}
+							<Typography
+								onClick={() => {
+									setPageType(pageType === "login" ? "register" : "login");
+									resetForm();
+								}}
+								sx={{
+									textDecoration: "underline",
+									color: theme.palette.primary.main,
+									"&:hover": {
+										cursor: "pointer",
+										color: theme.palette.primary.light,
+									},
+								}}
+							>
+								{pageType === "login"
+									? "Don't have an account? Register here."
+									: "Already have an account? Login here."}
+							</Typography>
 						</Box>
 					</Form>
 				);
