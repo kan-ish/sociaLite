@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import Dropzone from "react-dropzone";
 import * as yup from "yup";
@@ -45,11 +46,34 @@ const loginSchema = yup.object().shape({
 });
 
 const CustomForm = () => {
+	const navigate = useNavigate();
 	const [pageType, setPageType] = useState("register");
 	const theme = useTheme();
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
 
-	const handleFormSubmit = async (values, onSubmitProps) => {};
+	const register = async (values, onSubmitProps) => {
+		console.log(values, onSubmitProps);
+		navigate("/home");
+	};
+
+	const login = async (values, onSubmitProps) => {
+		const res = await fetch("http://localhost:6001/auth/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(values),
+		});
+		const resData = await res.json();
+		onSubmitProps.resetForm();
+
+		if (resData.user) {
+			navigate("/home");
+		}
+	};
+
+	const handleFormSubmit = async (values, onSubmitProps) => {
+		if (pageType === "login") await login(values, onSubmitProps);
+		if (pageType === "register") await register(values, onSubmitProps);
+	};
 
 	return (
 		<Formik
