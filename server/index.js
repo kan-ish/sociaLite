@@ -9,16 +9,17 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
 import postsRoutes from "./routes/posts.js";
 
-dotenv.config();
 
 const app = express();
 
 /* App config */
+dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"))
+app.use(express.static("public"))
 
 async function connectToMongoDB() {
 	try {

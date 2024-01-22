@@ -7,7 +7,7 @@ const UserProfilePic = ({ image, size = "60px" }) => {
 				style={{ objectFit: "cover", borderRadius: "50%" }}
 				width={size}
 				height={size}
-				src={`http://locahost:6001/assets/${image}`}
+				src={`http://localhost:6001/assets/${image}`}
 				alt="user profile picture"
 			/>
 		</Box>
