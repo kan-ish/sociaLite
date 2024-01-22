@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import Dropzone from "react-dropzone";
 import * as yup from "yup";
 
-import FlexboxSpaceBetween from "@/components/FlexboxSpaceBetween";
+import FlexboxSpaceBetween from "@/components/styledWrappers/FlexboxSpaceBetween";
 import { setUserLogin } from "@/redux/slices/authSlice";
 
 import {

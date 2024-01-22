@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import UserProfilePic from "./UserProfilePic";
-import FlexboxSpaceBetween from "./FlexboxSpaceBetween";
-import WidgetWrapper from "./WidgetWrapper";
+import UserProfilePic from "../UserProfilePic";
+import FlexboxSpaceBetween from "../styledWrappers/FlexboxSpaceBetween";
+import WidgetWrapper from "../styledWrappers/WidgetWrapper";
 
 import {
 	ManageAccountsOutlined,

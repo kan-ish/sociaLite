@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import Navbar from "@/views/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 
 import { Box, useMediaQuery } from "@mui/material";
-import UserWidget from "@/components/UserWidget";
+import UserWidget from "@/components/widgets/UserWidget";
 
 const HomePage = () => {
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");

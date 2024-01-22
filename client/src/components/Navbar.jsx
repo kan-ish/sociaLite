@@ -22,7 +22,7 @@ import {
 	Menu,
 	Close,
 } from "@mui/icons-material";
-import FlexboxSpaceBetween from "@/components/FlexboxSpaceBetween";
+import FlexboxSpaceBetween from "@/components/styledWrappers/FlexboxSpaceBetween";
 
 const Navbar = () => {
 	const dispatch = useDispatch();
