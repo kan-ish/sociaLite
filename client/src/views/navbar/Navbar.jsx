@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { setUserLogout } from "../../redux/slices/authSlice";
+import { setUserLogout } from "@/redux/slices/authSlice";
 
 import {
 	Box,
@@ -23,7 +22,7 @@ import {
 	Menu,
 	Close,
 } from "@mui/icons-material";
-import FlexboxSpaceBetween from "../../components/FlexboxSpaceBetween";
+import FlexboxSpaceBetween from "@/components/FlexboxSpaceBetween";
 
 const Navbar = () => {
 	const dispatch = useDispatch();
