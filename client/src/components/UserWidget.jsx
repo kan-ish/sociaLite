@@ -10,6 +10,7 @@ import {
 	ManageAccountsOutlined,
 	LocationOnOutlined,
 	WorkOutlineOutlined,
+	EditOutlined,
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
 
@@ -35,6 +36,10 @@ const UserWidget = ({ userId, picturePath }) => {
 	useEffect(() => {
 		getUser();
 	}, []);
+
+	if (!user) {
+		return null;
+	}
 
 	const {
 		firstName,
@@ -112,6 +117,53 @@ const UserWidget = ({ userId, picturePath }) => {
 					<Typography color={main} fontWeight="500">
 						{impressions}
 					</Typography>
+				</FlexboxSpaceBetween>
+			</Box>
+
+			{/* Socials */}
+			<Box p="1rem 0">
+				<Typography
+					fontSize="1rem"
+					color={main}
+					fontWeight="500"
+					mb="1rem">
+					Social Profiles
+				</Typography>
+
+				<FlexboxSpaceBetween gap="1rem" mb="0.5rem">
+					<FlexboxSpaceBetween gap="1rem">
+						<img src="/assets/twitter.webp" alt="twitter" />
+
+						<Box>
+							<Typography color={main} fontWeight="500">
+								Twitter
+							</Typography>
+
+							<Typography color={medium}>
+								Social Network
+							</Typography>
+						</Box>
+					</FlexboxSpaceBetween>
+
+					<EditOutlined sx={{ color: main }} />
+				</FlexboxSpaceBetween>
+
+				<FlexboxSpaceBetween gap="1rem">
+					<FlexboxSpaceBetween gap="1rem">
+						<img src="../assets/linkedin.png" alt="linkedin" />
+
+						<Box>
+							<Typography color={main} fontWeight="500">
+								LinkedIn
+							</Typography>
+
+							<Typography color={medium}>
+								Network Platform
+							</Typography>
+						</Box>
+					</FlexboxSpaceBetween>
+
+					<EditOutlined sx={{ color: main }} />
 				</FlexboxSpaceBetween>
 			</Box>
 		</WidgetWrapper>
