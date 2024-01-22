@@ -48,7 +48,7 @@ const loginSchema = yup.object().shape({
 	password: yup.string().required("required"),
 });
 
-const CustomForm = () => {
+const AuthForm = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch()
 
@@ -286,4 +286,4 @@ const CustomForm = () => {
 	);
 };
 
-export default CustomForm;
+export default AuthForm;

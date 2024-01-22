@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import HomePage from "./views/homePage/HomePage";
-import LoginPage from "./views/loginPage/LoginPage";
+import AuthPage from "./views/authPage/AuthPage";
 import ProfilePage from "./views/profilePage/ProfilePage";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -21,7 +21,7 @@ function App() {
 				<Routes>
 					<Route
 						path="/"
-						element={isCurrentUser ? <Navigate to="/home" /> : <LoginPage />}
+						element={isCurrentUser ? <Navigate to="/home" /> : <AuthPage />}
 					/>
 					<Route
 						path="/home"
