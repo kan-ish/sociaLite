@@ -32,7 +32,7 @@ const AuthPage = () => {
 					</small>
 				</Typography>
 
-				{/* Form */}
+				{/* Login/signup Form */}
 				<AuthForm />
 			</Box>
 		</Box>
