@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import mongoose from "mongoose";
+import morgan from "morgan";
 
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(morgan("dev"))
 
 async function connectToMongoDB() {
 	try {
