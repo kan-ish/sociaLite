@@ -42,6 +42,8 @@ const UserWidget = ({ userId, picturePath }) => {
 		location,
 		occupation,
 		friends,
+		impressions,
+		viewedProfile,
 	} = user;
 
 	return (
@@ -91,6 +93,26 @@ const UserWidget = ({ userId, picturePath }) => {
 					/>
 					<Typography color={medium}>{occupation}</Typography>
 				</Box>
+			</Box>
+
+			{/* Profile Stats */}
+			<Box p="1rem 0">
+				<FlexboxSpaceBetween mb="0.5rem">
+					<Typography color={medium}>
+						Who's viewd your profile
+					</Typography>
+					<Typography color={main} fontWeight="500">
+						{viewedProfile}
+					</Typography>
+				</FlexboxSpaceBetween>
+				<FlexboxSpaceBetween mb="0.5rem">
+					<Typography color={medium}>
+						Impressions of your post
+					</Typography>
+					<Typography color={main} fontWeight="500">
+						{impressions}
+					</Typography>
+				</FlexboxSpaceBetween>
 			</Box>
 		</WidgetWrapper>
 	);
