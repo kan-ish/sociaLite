@@ -30,7 +30,7 @@ const CreatePostWidget = ({ picturePath }) => {
 	const [post, setPost] = useState("");
 	const [isImageDrop, setIsImageDrop] = useState(false);
 	const [imageFile, setImageFile] = useState(null);
-	const theme = useTheme();
+	const { palette } = useTheme();
 
 	const { _id } = useSelector((state) => state.user);
 	const token = useSelector((state) => state.token);
@@ -70,7 +70,7 @@ const CreatePostWidget = ({ picturePath }) => {
 					value={post}
 					sx={{
 						width: "100%",
-						backgroundColor: theme.palette.neutral.light,
+						backgroundColor: palette.neutral.light,
 						borderRadius: "2rem",
 						p: "1rem 2rem",
 					}}
@@ -82,7 +82,7 @@ const CreatePostWidget = ({ picturePath }) => {
 			{isImageDrop && (
 				<>
 					<Box
-						border={`1px solid ${theme.palette.neutral.medium}`}
+						border={`1px solid ${palette.neutral.medium}`}
 						borderRadius={"5px"}
 						mt={"1rem"}
 						p={"1rem"}>
@@ -98,7 +98,7 @@ const CreatePostWidget = ({ picturePath }) => {
 										<Box
 											{...getRootProps()}
 											width={"100%"}
-											border={`2px dashed ${theme.palette.primary.main}`}
+											border={`2px dashed ${palette.primary.main}`}
 											p="1rem"
 											sx={{
 												"&:hover": {
@@ -108,7 +108,7 @@ const CreatePostWidget = ({ picturePath }) => {
 											<input {...getInputProps()} />
 											{!imageFile ? (
 												<p>
-													Drop or click to upload
+													Drop file or click to upload
 													image
 												</p>
 											) : (
@@ -144,13 +144,24 @@ const CreatePostWidget = ({ picturePath }) => {
 			<FlexboxSpaceBetween>
 				<FlexboxSpaceBetween
 					gap={"0.25rem"}
-					onClick={() => setIsImageDrop(!isImageDrop)}>
-					<ImageOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
+					onClick={() => setIsImageDrop(!isImageDrop)}
+					sx={{
+						"&:hover": {
+							cursor: "pointer",
+							color: palette.neutral.medium,
+						},
+					}}>
+					<ImageOutlined
+						sx={{ color: palette.neutral.mediumMain }}
+					/>
 
 					<Typography
-						color={theme.palette.neutral.mediumMain}
+						color={palette.neutral.mediumMain}
 						sx={{
-							"&:hover": { cursor: "pointer", color: theme.palette.neutral.medium },
+							"&:hover": {
+								cursor: "pointer",
+								color: palette.neutral.medium,
+							},
 						}}>
 						Image
 					</Typography>
@@ -158,27 +169,94 @@ const CreatePostWidget = ({ picturePath }) => {
 
 				{isMobileDevice ? (
 					<>
-						<FlexboxSpaceBetween gap={"0.25rem"}>
-							<MoreHorizOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
+						<FlexboxSpaceBetween
+							gap={"0.25rem"}
+							sx={{
+								"&:hover": {
+									cursor: "pointer",
+									color: palette.neutral.medium,
+								},
+							}}>
+							<MoreHorizOutlined
+								sx={{
+									color: palette.neutral.mediumMain,
+									"&:hover": {
+										cursor: "pointer",
+										color: palette.neutral.medium,
+									},
+								}}
+							/>
 						</FlexboxSpaceBetween>
 					</>
 				) : (
 					<>
-						<FlexboxSpaceBetween gap={"0.25rem"}>
-							<GifBoxOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
-							<Typography color={theme.palette.neutral.mediumMain}>Clip</Typography>
+						<FlexboxSpaceBetween
+							gap={"0.25rem"}
+							sx={{
+								"&:hover": {
+									cursor: "pointer",
+									color: palette.neutral.medium,
+								},
+							}}>
+							<GifBoxOutlined
+								sx={{ color: palette.neutral.mediumMain }}
+							/>
+							<Typography
+								color={palette.neutral.mediumMain}
+								sx={{
+									"&:hover": {
+										cursor: "pointer",
+										color: palette.neutral.medium,
+									},
+								}}>
+								Clip
+							</Typography>
 						</FlexboxSpaceBetween>
 
-						<FlexboxSpaceBetween gap={"0.25rem"}>
-							<AttachFileOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
-							<Typography color={theme.palette.neutral.mediumMain}>
+						<FlexboxSpaceBetween
+							gap={"0.25rem"}
+							sx={{
+								"&:hover": {
+									cursor: "pointer",
+									color: palette.neutral.medium,
+								},
+							}}>
+							<AttachFileOutlined
+								sx={{ color: palette.neutral.mediumMain }}
+							/>
+							<Typography
+								color={palette.neutral.mediumMain}
+								sx={{
+									"&:hover": {
+										cursor: "pointer",
+										color: palette.neutral.medium,
+									},
+								}}>
 								Attachment
 							</Typography>
 						</FlexboxSpaceBetween>
 
-						<FlexboxSpaceBetween gap={"0.25rem"}>
-							<MicOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
-							<Typography color={theme.palette.neutral.mediumMain}>Audio</Typography>
+						<FlexboxSpaceBetween
+							gap={"0.25rem"}
+							sx={{
+								"&:hover": {
+									cursor: "pointer",
+									color: palette.neutral.medium,
+								},
+							}}>
+							<MicOutlined
+								sx={{ color: palette.neutral.mediumMain }}
+							/>
+							<Typography
+								color={palette.neutral.mediumMain}
+								sx={{
+									"&:hover": {
+										cursor: "pointer",
+										color: palette.neutral.medium,
+									},
+								}}>
+								Audio
+							</Typography>
 						</FlexboxSpaceBetween>
 					</>
 				)}
@@ -187,11 +265,22 @@ const CreatePostWidget = ({ picturePath }) => {
 					disabled={!post}
 					onClick={handlePost}
 					sx={{
-						color: theme.palette.primary.alt,
-						backgroundColor: theme.palette.primary.main,
+						color: palette.primary.alt,
+						backgroundColor: palette.primary.main,
 						borderRadius: "3rem",
+						"&:hover": {
+							cursor: "pointer",
+							backgroundColor: palette.primary.light,
+						},
+						"&:disabled": {
+							backgroundColor: palette.neutral.light,
+						},
 					}}>
-					<Typography color={theme.palette.primary.dark} fontWeight={"500"}>Post</Typography>
+					<Typography
+						color={palette.primary.dark}
+						fontWeight={"500"}>
+						Post
+					</Typography>
 				</Button>
 			</FlexboxSpaceBetween>
 		</WidgetWrapper>
