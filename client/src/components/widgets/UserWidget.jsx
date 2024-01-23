@@ -12,7 +12,7 @@ import {
 	WorkOutlineOutlined,
 	EditOutlined,
 	X,
-	LinkedIn
+	LinkedIn,
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
 
@@ -53,14 +53,17 @@ const UserWidget = ({ userId, picturePath }) => {
 		viewedProfile,
 	} = user;
 
+	const fullName = `${firstName[0].toUpperCase()}${firstName.slice(
+		1
+	)} ${lastName[0].toUpperCase()}${lastName.slice(1)}`;
+
 	return (
 		<WidgetWrapper>
 			{/* User Head */}
 			<FlexboxSpaceBetween
 				gap="0.5rem"
 				pb="1.1rem"
-				onClick={() => navigate(`/profile/${userId}`)}
-			>
+				onClick={() => navigate(`/profile/${userId}`)}>
 				<FlexboxSpaceBetween gap="1rem">
 					<UserProfilePic image={picturePath} />
 					<Box>
@@ -73,12 +76,13 @@ const UserWidget = ({ userId, picturePath }) => {
 									color: theme.palette.primary.light,
 									cursor: "pointer",
 								},
-							}}
-						>
-							{firstName} {lastName}
+							}}>
+							{fullName}
 						</Typography>
 
-						<Typography color={medium}>{friends.length} friends</Typography>
+						<Typography color={medium}>
+							{friends.length} friends
+						</Typography>
 					</Box>
 				</FlexboxSpaceBetween>
 
@@ -94,7 +98,10 @@ const UserWidget = ({ userId, picturePath }) => {
 					<Typography color={medium}>{location}</Typography>
 				</Box>
 				<Box display="flex" alignItems="Center" gap="1rem" mb="0.5rem">
-					<WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
+					<WorkOutlineOutlined
+						fontSize="large"
+						sx={{ color: main }}
+					/>
 					<Typography color={medium}>{occupation}</Typography>
 				</Box>
 			</Box>
@@ -102,13 +109,17 @@ const UserWidget = ({ userId, picturePath }) => {
 			{/* Profile Stats */}
 			<Box p="1rem 0">
 				<FlexboxSpaceBetween mb="0.5rem">
-					<Typography color={medium}>Who's viewd your profile</Typography>
+					<Typography color={medium}>
+						Who's viewd your profile
+					</Typography>
 					<Typography color={main} fontWeight="500">
 						{viewedProfile}
 					</Typography>
 				</FlexboxSpaceBetween>
 				<FlexboxSpaceBetween mb="0.5rem">
-					<Typography color={medium}>Impressions of your post</Typography>
+					<Typography color={medium}>
+						Impressions of your post
+					</Typography>
 					<Typography color={main} fontWeight="500">
 						{impressions}
 					</Typography>
@@ -117,7 +128,11 @@ const UserWidget = ({ userId, picturePath }) => {
 
 			{/* Socials */}
 			<Box p="1rem 0">
-				<Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
+				<Typography
+					fontSize="1rem"
+					color={main}
+					fontWeight="500"
+					mb="1rem">
 					Social Profiles
 				</Typography>
 
@@ -130,7 +145,9 @@ const UserWidget = ({ userId, picturePath }) => {
 								Twitter
 							</Typography>
 
-							<Typography color={medium}>Social Network</Typography>
+							<Typography color={medium}>
+								Social Network
+							</Typography>
 						</Box>
 					</FlexboxSpaceBetween>
 
@@ -139,14 +156,16 @@ const UserWidget = ({ userId, picturePath }) => {
 
 				<FlexboxSpaceBetween gap="1rem">
 					<FlexboxSpaceBetween gap="1rem">
-						<LinkedIn fontSize="large" sx={{color: "#0077b5"}} />
+						<LinkedIn fontSize="large" sx={{ color: "#0077b5" }} />
 
 						<Box>
 							<Typography color={main} fontWeight="500">
 								LinkedIn
 							</Typography>
 
-							<Typography color={medium}>Network Platform</Typography>
+							<Typography color={medium}>
+								Network Platform
+							</Typography>
 						</Box>
 					</FlexboxSpaceBetween>
 
