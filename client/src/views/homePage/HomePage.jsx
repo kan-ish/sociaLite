@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import Navbar from "@/components/Navbar";
 
-import { Box, useMediaQuery } from "@mui/material";
+import CreatePostWidget from "@/components/widgets/CreatePostWidget";
 import UserWidget from "@/components/widgets/UserWidget";
+
+import { Box, useMediaQuery } from "@mui/material";
 
 const HomePage = () => {
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
@@ -20,6 +22,13 @@ const HomePage = () => {
 				justifyContent="space-between">
 				<Box flexBasis={isMobileDevice ? undefined : "26%"}>
 					<UserWidget userId={_id} picturePath={picturePath} />
+				</Box>
+				
+				<Box 
+					flexBasis={isMobileDevice ? undefined : "42%"}
+					mt={isMobileDevice ? "2rem" : undefined}
+				>
+					<CreatePostWidget picturePath={picturePath} />
 				</Box>
 			</Box>
 		</Box>
