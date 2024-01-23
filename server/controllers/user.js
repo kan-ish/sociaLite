@@ -6,7 +6,10 @@ export const getUser = async (req, res) => {
 		const { id } = req.params;
 		const user = await User.findById(id);
 
-		res.json({ user });
+		const userWithoutPassword = user.toObject()
+		delete userWithoutPassword.password
+
+		res.json({ user: userWithoutPassword });
 	} catch (err) {
 		res.status(404).json({ message: err.message });
 	}

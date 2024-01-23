@@ -33,7 +33,7 @@ export const register = async (req, res) => {
 		});
 
 		const savedUser = await newUser.save();
-		res.status(201).json({user: savedUser});
+		res.status(201).json({ user: savedUser });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: err.message });
@@ -56,7 +56,10 @@ export const login = async (req, res) => {
 
 		const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-		res.status(200).json({ token, user });
+		const userWithoutPassword = user.toObject();
+		delete userWithoutPassword.password;
+
+		res.status(200).json({ token, user: userWithoutPassword });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: err.message });
