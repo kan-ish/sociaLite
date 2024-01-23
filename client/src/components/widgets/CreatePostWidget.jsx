@@ -1,15 +1,19 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
 
 import FlexboxSpaceBetween from "../styledWrappers/FlexboxSpaceBetween";
 import UserProfilePic from "../UserProfilePic";
 import WidgetWrapper from "../styledWrappers/WidgetWrapper";
 
-import { useState } from "react";
-
 import {
 	EditOutlined,
 	DeleteOutlined,
 	ImageOutlined,
+	GifBoxOutlined,
+	AttachFileOutlined,
+	MicOutlined,
+	MoreHorizOutlined,
 } from "@mui/icons-material";
 import {
 	Box,
@@ -19,6 +23,7 @@ import {
 	useTheme,
 	useMediaQuery,
 	IconButton,
+	Button,
 } from "@mui/material";
 
 const CreatePostWidget = ({ picturePath }) => {
@@ -27,9 +32,33 @@ const CreatePostWidget = ({ picturePath }) => {
 	const [imageFile, setImageFile] = useState(null);
 	const theme = useTheme();
 
-	const mediumMain = theme.palette.neutral.mediumMain;
-	const medium = theme.palette.neutral.medium;
+	const { _id } = useSelector((state) => state.user);
+	const token = useSelector((state) => state.token);
+
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
+
+	const handlePost = async () => {
+		const formData = new FormData();
+		formData.append("userId", _id);
+		formData.append("description", post);
+
+		if (imageFile) {
+			formData.append("image", imageFile);
+			formData.append("picturePath", imageFile.name);
+		}
+
+		const res = await fetch("http://localhost:6001/posts", {
+			method: "POST",
+			body: formData,
+			headers: { Authorization: `Bearer ${token}` },
+		});
+		const allPosts = await res.json();
+
+		console.log(allPosts);
+
+		setImageFile(null);
+		setPost("");
+	};
 
 	return (
 		<WidgetWrapper>
@@ -53,7 +82,7 @@ const CreatePostWidget = ({ picturePath }) => {
 			{isImageDrop && (
 				<>
 					<Box
-						border={`1px solid ${medium}`}
+						border={`1px solid ${theme.palette.neutral.medium}`}
 						borderRadius={"5px"}
 						mt={"1rem"}
 						p={"1rem"}>
@@ -116,16 +145,54 @@ const CreatePostWidget = ({ picturePath }) => {
 				<FlexboxSpaceBetween
 					gap={"0.25rem"}
 					onClick={() => setIsImageDrop(!isImageDrop)}>
-					<ImageOutlined sx={{ color: mediumMain }} />
+					<ImageOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
 
 					<Typography
-						color={mediumMain}
+						color={theme.palette.neutral.mediumMain}
 						sx={{
-							"&:hover": { cursor: "pointer", color: medium },
+							"&:hover": { cursor: "pointer", color: theme.palette.neutral.medium },
 						}}>
 						Image
 					</Typography>
 				</FlexboxSpaceBetween>
+
+				{isMobileDevice ? (
+					<>
+						<FlexboxSpaceBetween gap={"0.25rem"}>
+							<MoreHorizOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
+						</FlexboxSpaceBetween>
+					</>
+				) : (
+					<>
+						<FlexboxSpaceBetween gap={"0.25rem"}>
+							<GifBoxOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
+							<Typography color={theme.palette.neutral.mediumMain}>Clip</Typography>
+						</FlexboxSpaceBetween>
+
+						<FlexboxSpaceBetween gap={"0.25rem"}>
+							<AttachFileOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
+							<Typography color={theme.palette.neutral.mediumMain}>
+								Attachment
+							</Typography>
+						</FlexboxSpaceBetween>
+
+						<FlexboxSpaceBetween gap={"0.25rem"}>
+							<MicOutlined sx={{ color: theme.palette.neutral.mediumMain }} />
+							<Typography color={theme.palette.neutral.mediumMain}>Audio</Typography>
+						</FlexboxSpaceBetween>
+					</>
+				)}
+
+				<Button
+					disabled={!post}
+					onClick={handlePost}
+					sx={{
+						color: theme.palette.primary.alt,
+						backgroundColor: theme.palette.primary.main,
+						borderRadius: "3rem",
+					}}>
+					<Typography color={theme.palette.primary.dark} fontWeight={"500"}>Post</Typography>
+				</Button>
 			</FlexboxSpaceBetween>
 		</WidgetWrapper>
 	);
