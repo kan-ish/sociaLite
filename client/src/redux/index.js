@@ -9,9 +9,10 @@ import {
 	PURGE,
 	REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { CookieStorage } from 'redux-persist-cookie-storage'
+import Cookies from 'cookies-js'
 
-const persistConfig = { key: "root", storage, version: 1 };
+const persistConfig = { key: "root", storage: new CookieStorage(Cookies), version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
 const store = configureStore({
