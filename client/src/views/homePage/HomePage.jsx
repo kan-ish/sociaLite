@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import Navbar from "@/components/Navbar";
 
+import Navbar from "@/components/Navbar";
 import CreatePostWidget from "@/components/widgets/CreatePostWidget";
 import UserWidget from "@/components/widgets/UserWidget";
+import FeedWidget from "@/components/widgets/FeedWidget";
 
 import { Box, useMediaQuery } from "@mui/material";
 
@@ -29,6 +30,10 @@ const HomePage = () => {
 					mt={isMobileDevice ? "2rem" : undefined}
 				>
 					<CreatePostWidget picturePath={picturePath} />
+				</Box>
+
+				<Box>
+					<FeedWidget userId={_id} />
 				</Box>
 			</Box>
 		</Box>

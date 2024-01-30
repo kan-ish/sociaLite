@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { setPosts } from "@/redux/slices/authSlice";
 import PostWidget from "./PostWidget";
 
 const FeedWidget = ({ userId, isProfile = false }) => {
-	const [posts, setPosts] = useState({});
+    const dispatch = useDispatch()
 	const token = useSelector((state) => state.token);
+	const posts = useSelector((state) => state.posts)
+
+	console.log(posts)
 
 	const getPosts = async () => {
 		const res = await fetch("http://localhost:6001/posts", {
@@ -14,7 +19,8 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 		});
 
 		const data = await res.json();
-		setPosts(data);
+        // console.log(data)
+		dispatch(setPosts({posts: data.allPosts}))
 	};
 
 	const getUserPosts = async () => {
@@ -25,7 +31,7 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 		});
 
 		const data = await res.json();
-		setPosts(data);
+		dispatch(setPosts({posts: data.allPosts}))
 	};
 
 	useEffect(() => {

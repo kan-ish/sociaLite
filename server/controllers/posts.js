@@ -49,7 +49,7 @@ export const getUserPosts = async (req, res) => {
 
 export const toggleLike = async (req, res) => {
 	try {
-		const userId = req.user.id;
+		const { userId } = req.user;
 		const { id } = req.params;
 		const post = await Post.findById(id);
 		const isLiked = post.likes.get(userId);
