@@ -54,15 +54,15 @@ export const arbitraryString =
 	"In the moonlit night, whispers of the wind reveal secrets of forgotten tales, as stars dance in the cosmic ballet, painting the sky with ethereal wonders.";
 
 export const sampleImages = [
-	"sample0",
-	"sample1",
-	"sample2",
-	"sample3",
-	"sample4",
-	"sample5",
-	"sample6",
-	"sample7",
-	"sample8",
-	"sample9",
-	"sample10",
+	"sample0.jpeg",
+	"sample1.jpeg",
+	"sample2.jpeg",
+	"sample3.jpeg",
+	"sample4.jpeg",
+	"sample5.jpeg",
+	"sample6.jpeg",
+	"sample7.jpeg",
+	"sample8.jpeg",
+	"sample9.jpeg",
+	"sample10.jpeg",
 ];
