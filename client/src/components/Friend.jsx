@@ -11,7 +11,7 @@ import {
 } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
-const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
+const Friend = ({ friendId, name, location, userPicturePath }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -64,7 +64,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 						<Typography
 							color={palette.neutral.medium}
 							fontSize={"0.75rem"}>
-							{subtitle}
+							{location}
 						</Typography>
 					</Box>
 				</FlexboxSpaceBetween>
