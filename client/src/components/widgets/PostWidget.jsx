@@ -11,7 +11,7 @@ import {
 	FavoriteOutlined,
 	ShareOutlined,
 } from "@mui/icons-material";
-import { IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import { setPost } from "@/redux/slices/authSlice";
 
 const PostWidget = ({
@@ -59,7 +59,7 @@ const PostWidget = ({
 				<Friend
 					friendId={postUserId}
 					name={fullName}
-					subtitle={subtitle}
+					location={location}
 					userPicturePath={userPicturePath}
 				/>
 
@@ -85,9 +85,7 @@ const PostWidget = ({
 						<FlexboxSpaceBetween gap={"0.3rem"}>
 							<IconButton onClick={patchLike}>
 								{isLiked ? (
-									<FavoriteOutlined
-										sx={{ color: palette.primary.main }}
-									/>
+									<FavoriteOutlined sx={{ color: palette.primary.main }} />
 								) : (
 									<FavoriteBorderOutlined />
 								)}
@@ -97,7 +95,7 @@ const PostWidget = ({
 						</FlexboxSpaceBetween>
 
 						<FlexboxSpaceBetween gap={"0.3rem"}>
-							<IconButton onClick={setIsCommentsOpen(!isCommentsOpen)}>
+							<IconButton onClick={() => setIsCommentsOpen(!isCommentsOpen)}>
 								<ChatBubbleOutlineOutlined />
 							</IconButton>
 
@@ -105,10 +103,32 @@ const PostWidget = ({
 						</FlexboxSpaceBetween>
 					</FlexboxSpaceBetween>
 
-                    <IconButton>
-                        <ShareOutlined />
-                    </IconButton>
+					<IconButton>
+						<ShareOutlined />
+					</IconButton>
 				</FlexboxSpaceBetween>
+
+				{isCommentsOpen && (
+					<Box mt={"0.5rem"}>
+						{comments.map((comment, i) => (
+							<Box key={i}>
+								<Divider />
+
+								<Typography
+									sx={{
+										color: palette.neutral.main,
+										m: "0.5rem 0",
+										pl: "1rem",
+									}}
+								>
+									{comment}
+								</Typography>
+							</Box>
+						))}
+
+						<Divider />
+					</Box>
+				)}
 			</WidgetWrapper>
 		</>
 	);
