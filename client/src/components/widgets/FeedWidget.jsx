@@ -5,11 +5,9 @@ import { setPosts } from "@/redux/slices/authSlice";
 import PostWidget from "./PostWidget";
 
 const FeedWidget = ({ userId, isProfile = false }) => {
-    const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
-	const posts = useSelector((state) => state.posts)
-
-	console.log(posts)
+	const posts = useSelector((state) => state.posts);
 
 	const getPosts = async () => {
 		const res = await fetch("http://localhost:6001/posts", {
@@ -19,8 +17,8 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 		});
 
 		const data = await res.json();
-        // console.log(data)
-		dispatch(setPosts({posts: data.allPosts}))
+		// console.log(data)
+		dispatch(setPosts({ posts: data.allPosts }));
 	};
 
 	const getUserPosts = async () => {
@@ -31,7 +29,7 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 		});
 
 		const data = await res.json();
-		dispatch(setPosts({posts: data.allPosts}))
+		dispatch(setPosts({ posts: data.allPosts }));
 	};
 
 	useEffect(() => {
@@ -57,19 +55,21 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 					likes,
 					comments,
 				}) => {
-					<PostWidget
-						key={_id}
-						postId={_id}
-						postUserId={userId}
-						firstName={firstName}
-						lastName={lastName}
-						description={description}
-						location={location}
-						picturePath={picturePath}
-						userPicturePath={userPicturePath}
-						likes={likes}
-						comments={comments}
-					/>;
+					return (
+						<PostWidget
+							key={_id}
+							postId={_id}
+							postUserId={userId}
+							firstName={firstName}
+							lastName={lastName}
+							description={description}
+							location={location}
+							picturePath={picturePath}
+							userPicturePath={userPicturePath}
+							likes={likes}
+							comments={comments}
+						/>
+					);
 				}
 			)}
 		</>

@@ -30,10 +30,7 @@ const HomePage = () => {
 					mt={isMobileDevice ? "2rem" : undefined}
 				>
 					<CreatePostWidget picturePath={picturePath} />
-				</Box>
-
-				<Box>
-					<FeedWidget userId={_id} />
+					<FeedWidget userId={_id} />   
 				</Box>
 			</Box>
 		</Box>
