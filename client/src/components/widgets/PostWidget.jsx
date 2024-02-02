@@ -33,6 +33,7 @@ const PostWidget = ({
 	const token = useSelector((state) => state.token);
 	const loggedInUserId = useSelector((state) => state.user._id);
 	const { palette } = useTheme();
+	// console.log(loggedInUserId)
 
 	const isLiked = Boolean(likes[loggedInUserId]);
 	const fullName = `${firstName[0].toUpperCase()}${firstName.slice(
@@ -48,7 +49,8 @@ const PostWidget = ({
 			},
 			body: JSON.stringify({ userId: loggedInUserId }),
 		});
-		const updatedPost = await res.json();
+		const { updatedPost } = await res.json();
+		// console.log(updatedPost);
 
 		dispatch(setPost({ post: updatedPost }));
 	};
