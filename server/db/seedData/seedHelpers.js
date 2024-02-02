@@ -65,4 +65,8 @@ export const sampleImages = [
 	"sample8.jpeg",
 	"sample9.jpeg",
 	"sample10.jpeg",
+	"feather-7854908_1280.webp",
+	"welding-8445458_1280.webp",
+	"street-8270869_1280.webp",
+	"ferris-wheel-7859855_1280.jpg"
 ];

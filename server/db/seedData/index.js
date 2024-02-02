@@ -84,6 +84,7 @@ const seedDBwithPosts = async (
 				Math.floor(Math.random() * arbitraryString.length)
 			),
 			picturePath: sample(sampleImages),
+			userPicturePath: sample(sampleImages),
 			likes: randomLikes(),
 			comments: randomComments(),
 		});
