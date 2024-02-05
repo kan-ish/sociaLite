@@ -5,14 +5,15 @@ import { Navigate } from "react-router-dom";
 import HomePage from "./views/homePage/HomePage";
 import AuthPage from "./views/authPage/AuthPage";
 import ProfilePage from "./views/profilePage/ProfilePage";
+import { themeSettings } from "./utils/theme";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { themeSettings } from "./utils/theme";
 
 function App() {
 	const isCurrentUser = useSelector((state) => state.token);
-	const theme = createTheme(themeSettings());
+	const currentThemeMode = useSelector(state  => state.mode)
+	const theme = createTheme(themeSettings(currentThemeMode));
 
 	return (
 		<BrowserRouter>

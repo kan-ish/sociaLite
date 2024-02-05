@@ -4,6 +4,7 @@ const initialState = {
 	user: null,
 	token: null,
 	posts: [],
+	mode: "dark"
 };
 
 function deleteAllCookies() {
@@ -46,8 +47,11 @@ export const authSlice = createSlice({
 
 			state.posts = updatedPosts
 		},
+		toggleThemeMode: (state) => {
+			state.mode = state.mode === "dark" ? "light" : "dark"
+		},
 	},
 });
 
-export const { setUserLogin, setUserLogout, setFriends, setPost, setPosts } = authSlice.actions;
+export const { setUserLogin, setUserLogout, setFriends, setPost, setPosts, toggleThemeMode } = authSlice.actions;
 export default authSlice.reducer;
