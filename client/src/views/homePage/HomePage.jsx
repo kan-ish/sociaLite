@@ -25,18 +25,19 @@ const HomePage = () => {
 				<Box flexBasis={isMobileDevice ? undefined : "26%"}>
 					<UserWidget userId={_id} picturePath={picturePath} />
 				</Box>
-				
-				<Box 
+
+				<Box
 					flexBasis={isMobileDevice ? undefined : "42%"}
-					mt={isMobileDevice ? "2rem" : undefined}
-				>
+					mt={isMobileDevice ? "2rem" : undefined}>
 					<CreatePostWidget picturePath={picturePath} />
-					<FeedWidget userId={_id} />   
+					<FeedWidget userId={_id} />
 				</Box>
 
-				<Box>
-					<FriendsListWidget userId={_id} />
-				</Box>
+				{!isMobileDevice && (
+					<Box flexBasis={"26%"}>
+						<FriendsListWidget userId={_id} />
+					</Box>
+				)}
 			</Box>
 		</Box>
 	);

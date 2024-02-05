@@ -23,7 +23,7 @@ const FriendsListWidget = ({ userId }) => {
 			}
 		);
 		const data = await res.json();
-		console.log(data[0]);
+		// console.log(data[0]);
 		dispatch(setFriends({ friends: data }));
 	};
 
@@ -49,9 +49,9 @@ const FriendsListWidget = ({ userId }) => {
 							friendId={friend?._id}
 							firstName={friend?.firstName}
 							lastName={friend?.lastName}
-                            location={friend?.location}
-                            userPicturePath={friend?.picturePath}
-                            />
+							location={friend?.location}
+							userPicturePath={friend?.picturePath}
+						/>
 					);
 				})}
 			</Box>
