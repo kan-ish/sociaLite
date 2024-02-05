@@ -36,9 +36,6 @@ const PostWidget = ({
 	// console.log(loggedInUserId)
 
 	const isLiked = Boolean(likes[loggedInUserId]);
-	const fullName = `${firstName[0].toUpperCase()}${firstName.slice(
-		1
-	)} ${lastName[0].toUpperCase()}${lastName.slice(1)} `;
 
 	const patchLike = async () => {
 		const res = await fetch(`http://localhost:6001/posts/${postId}/like`, {
@@ -60,7 +57,8 @@ const PostWidget = ({
 			<WidgetWrapper margin={"2rem 0"}>
 				<Friend
 					friendId={postUserId}
-					name={fullName}
+					firstName={firstName}
+					lastName={lastName}
 					location={location}
 					userPicturePath={userPicturePath}
 				/>

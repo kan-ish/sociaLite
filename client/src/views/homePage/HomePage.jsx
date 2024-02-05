@@ -6,6 +6,7 @@ import UserWidget from "@/components/widgets/UserWidget";
 import FeedWidget from "@/components/widgets/FeedWidget";
 
 import { Box, useMediaQuery } from "@mui/material";
+import FriendsListWidget from "@/components/widgets/FriendsListWidget";
 
 const HomePage = () => {
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
@@ -24,14 +25,19 @@ const HomePage = () => {
 				<Box flexBasis={isMobileDevice ? undefined : "26%"}>
 					<UserWidget userId={_id} picturePath={picturePath} />
 				</Box>
-				
-				<Box 
+
+				<Box
 					flexBasis={isMobileDevice ? undefined : "42%"}
-					mt={isMobileDevice ? "2rem" : undefined}
-				>
+					mt={isMobileDevice ? "2rem" : undefined}>
 					<CreatePostWidget picturePath={picturePath} />
-					<FeedWidget userId={_id} />   
+					<FeedWidget userId={_id} />
 				</Box>
+
+				{!isMobileDevice && (
+					<Box flexBasis={"26%"}>
+						<FriendsListWidget userId={_id} />
+					</Box>
+				)}
 			</Box>
 		</Box>
 	);

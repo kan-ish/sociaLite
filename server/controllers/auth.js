@@ -16,18 +16,22 @@ export const register = async (req, res) => {
 			occupation,
 		} = req.body;
 
+		const capitalizedFirstName = `${firstName[0].toUpperCase()}${firstName.slice(1)}`
+		const capitalizedLastName = `${lastName[0].toUpperCase()}${lastName.slice(1)}`
+		const capitalizedOccupation = `${occupation[0].toUpperCase()}${occupation.slice(1)}`
+
 		const salt = await bcrypt.genSalt();
 		const pwdHash = await bcrypt.hash(password, salt);
 
 		const newUser = new User({
-			firstName,
-			lastName,
+			firstName: capitalizedFirstName,
+			lastName: capitalizedLastName,
 			password: pwdHash,
 			email,
 			picturePath,
 			friends,
 			location,
-			occupation,
+			occupation: capitalizedOccupation,
 			viewedProfile: Math.floor(Math.random() * 10000),
 			impressions: Math.floor(Math.random() * 10000),
 		});

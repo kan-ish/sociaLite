@@ -28,7 +28,7 @@ function App() {
 						element={isCurrentUser ? <HomePage /> : <Navigate to="/" />}
 					/>
 					<Route
-						path="/profile/:userid"
+						path="/profile/:userId"
 						element={isCurrentUser ? <ProfilePage /> : <Navigate to="/home" />}
 					/>
 				</Routes>

@@ -29,7 +29,8 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 		});
 
 		const data = await res.json();
-		dispatch(setPosts({ posts: data.allPosts }));
+		// console.log(data)
+		dispatch(setPosts({ posts: data.userPosts }));
 	};
 
 	useEffect(() => {
