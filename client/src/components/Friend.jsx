@@ -5,13 +5,16 @@ import { setFriends } from "@/redux/slices/authSlice";
 import FlexboxSpaceBetween from "./styledWrappers/FlexboxSpaceBetween";
 import UserProfilePic from "./UserProfilePic";
 
-import {
-	PersonAddOutlined,
-	PersonRemoveOutlined,
-} from "@mui/icons-material";
+import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
-const Friend = ({ friendId, firstName, lastName, location, userPicturePath }) => {
+const Friend = ({
+	friendId,
+	firstName,
+	lastName,
+	location,
+	userPicturePath,
+}) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -21,6 +24,7 @@ const Friend = ({ friendId, firstName, lastName, location, userPicturePath }) =>
 	const { palette } = useTheme();
 
 	const isFriend = friends.find((friend) => friend._id === friendId);
+	const isSelf = _id === friendId;
 
 	const patchFriend = async () => {
 		const res = await fetch(
@@ -68,22 +72,24 @@ const Friend = ({ friendId, firstName, lastName, location, userPicturePath }) =>
 					</Box>
 				</FlexboxSpaceBetween>
 
-				<IconButton
-					onClick={() => patchFriend()}
-					sx={{
-						backgroundColor: palette.primary.light,
-						Padding: "0.6rem",
-					}}>
-					{isFriend ? (
-						<PersonRemoveOutlined
-							sx={{ color: palette.primary.dark }}
-						/>
-					) : (
-						<PersonAddOutlined
-							sx={{ color: palette.primary.dark }}
-						/>
-					)}
-				</IconButton>
+				{!isSelf && (
+					<IconButton
+						onClick={() => patchFriend()}
+						sx={{
+							backgroundColor: palette.primary.light,
+							Padding: "0.6rem",
+						}}>
+						{isFriend ? (
+							<PersonRemoveOutlined
+								sx={{ color: palette.primary.dark }}
+							/>
+						) : (
+							<PersonAddOutlined
+								sx={{ color: palette.primary.dark }}
+							/>
+						)}
+					</IconButton>
+				)}
 			</FlexboxSpaceBetween>
 		</>
 	);
