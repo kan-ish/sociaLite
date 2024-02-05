@@ -14,11 +14,11 @@ export const colorKey = {
 		10: "#0A0A0A",
 	},
 	primary: {
-		0: "#E6FBFF",
-		1: "#99EEFD",
-		2: "#00D5FA",
-		3: "#006B7D",
-		4: "#00353F",
+		0: "#afdcf0",
+		1: "#afdcf0",
+		2: "#e84f4f",
+		3: "#416282",
+		4: "#227d8c",
 	},
 };
 
