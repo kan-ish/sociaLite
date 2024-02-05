@@ -11,17 +11,17 @@ import {
 } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
-const Friend = ({ friendId, name, location, userPicturePath }) => {
+const Friend = ({ friendId, firstName, lastName, location, userPicturePath }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const { _id } = useSelector((state) => state.user);
 	const token = useSelector((state) => state.token);
 	const friends = useSelector((state) => state.user.friends);
-
 	const { palette } = useTheme();
 
 	const isFriend = friends.find((friend) => friend._id === friendId);
+	const fullName = `${firstName[0].toUpperCase()}${firstName.slice(1)} ${lastName[0].toUpperCase()}${lastName.slice(1)}`
 
 	const patchFriend = async () => {
 		const res = await fetch(
@@ -58,7 +58,7 @@ const Friend = ({ friendId, name, location, userPicturePath }) => {
 									cursor: "pointer",
 								},
 							}}>
-							{name}
+							{fullName}
 						</Typography>
 
 						<Typography
