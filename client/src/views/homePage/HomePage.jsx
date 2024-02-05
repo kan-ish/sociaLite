@@ -6,6 +6,7 @@ import UserWidget from "@/components/widgets/UserWidget";
 import FeedWidget from "@/components/widgets/FeedWidget";
 
 import { Box, useMediaQuery } from "@mui/material";
+import FriendsListWidget from "@/components/widgets/FriendsListWidget";
 
 const HomePage = () => {
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
@@ -31,6 +32,10 @@ const HomePage = () => {
 				>
 					<CreatePostWidget picturePath={picturePath} />
 					<FeedWidget userId={_id} />   
+				</Box>
+
+				<Box>
+					<FriendsListWidget userId={_id} />
 				</Box>
 			</Box>
 		</Box>
