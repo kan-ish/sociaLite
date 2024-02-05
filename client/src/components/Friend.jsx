@@ -21,7 +21,6 @@ const Friend = ({ friendId, firstName, lastName, location, userPicturePath }) =>
 	const { palette } = useTheme();
 
 	const isFriend = friends.find((friend) => friend._id === friendId);
-	const fullName = `${firstName[0].toUpperCase()}${firstName.slice(1)} ${lastName[0].toUpperCase()}${lastName.slice(1)}`
 
 	const patchFriend = async () => {
 		const res = await fetch(
@@ -58,7 +57,7 @@ const Friend = ({ friendId, firstName, lastName, location, userPicturePath }) =>
 									cursor: "pointer",
 								},
 							}}>
-							{fullName}
+							{`${firstName} ${lastName}`}
 						</Typography>
 
 						<Typography
