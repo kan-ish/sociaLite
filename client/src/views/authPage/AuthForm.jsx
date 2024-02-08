@@ -78,7 +78,7 @@ const AuthForm = () => {
 	};
 
 	const login = async (values, onSubmitProps) => {
-		const res = await fetch("http://localhost:6001/auth/login", {
+		const res = await fetch("http://51.21.112.169:6001/auth/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(values),
