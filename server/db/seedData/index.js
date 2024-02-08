@@ -23,6 +23,8 @@ async function connectToDB() {
 }
 connectToDB();
 
+const allUsers = await User.find();
+
 /* function to grab a random item from an array */
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
@@ -84,7 +86,7 @@ const seedDBwithPosts = async (
 				Math.floor(Math.random() * arbitraryString.length)
 			),
 			picturePath: sample(sampleImages),
-			userPicturePath: sample(sampleImages),
+			userPicturePath: user.picturePath,
 			likes: randomLikes(),
 			comments: randomComments(),
 		});
