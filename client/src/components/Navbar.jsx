@@ -176,7 +176,7 @@ const Navbar = () => {
 								}}
 							>
 								<MenuItem value={currentUserFullName}>
-									<Typography>Kanishk Singh</Typography>
+									<Typography>{currentUserFullName}</Typography>
 								</MenuItem>
 
 								<MenuItem
