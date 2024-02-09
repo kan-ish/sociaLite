@@ -10,7 +10,7 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 	const posts = useSelector((state) => state.posts);
 
 	const getPosts = async () => {
-		const res = await fetch("http://localhost:6001/posts", {
+		const res = await fetch("https://api.kanishksingh.dev/posts", {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -22,7 +22,7 @@ const FeedWidget = ({ userId, isProfile = false }) => {
 	};
 
 	const getUserPosts = async () => {
-		const res = await fetch(`http://localhost:6001/posts/${userId}/posts`, {
+		const res = await fetch(`https://api.kanishksingh.dev/posts/${userId}/posts`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
