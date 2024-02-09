@@ -47,7 +47,7 @@ const CreatePostWidget = ({ picturePath }) => {
 			formData.append("picturePath", imageFile.name);
 		}
 
-		const res = await fetch("http://localhost:6001/posts", {
+		const res = await fetch("https://socialite.kanishksingh.dev/posts", {
 			method: "POST",
 			body: formData,
 			headers: { Authorization: `Bearer ${token}` },
