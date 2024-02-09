@@ -23,7 +23,7 @@ export const register = async (req, res) => {
 
 		const occupationWords = occupation.split(" ")
 		let capitalizedOccupation 
-		for (let word in occupationWords) {
+		for (let word of occupationWords) {
 			capitalizedOccupation += word[0].toUpperCase() + word.slice(1) + " "
 		}
 		capitalizedOccupation.trim()
