@@ -19,6 +19,7 @@ export const register = async (req, res) => {
 		const capitalizedFirstName = `${firstName[0].toUpperCase()}${firstName.slice(1)}`
 		const capitalizedLastName = `${lastName[0].toUpperCase()}${lastName.slice(1)}`
 		const lowerCaseEmail = email.toLowerCase()
+		const capitalizedLocation = `${location[0].toUpperCase()}${location.slice[1]}`
 
 		const occupationWords = occupation.split(" ")
 		let capitalizedOccupation 
@@ -37,7 +38,7 @@ export const register = async (req, res) => {
 			email: lowerCaseEmail,
 			picturePath,
 			friends,
-			location,
+			location: capitalizedLocation,
 			occupation: capitalizedOccupation,
 			viewedProfile: Math.floor(Math.random() * 10000),
 			impressions: Math.floor(Math.random() * 10000),
