@@ -38,7 +38,7 @@ const PostWidget = ({
 	const isLiked = Boolean(likes[loggedInUserId]);
 
 	const patchLike = async () => {
-		const res = await fetch(`https://socialite.kanishksingh.dev/posts/${postId}/like`, {
+		const res = await fetch(`https://api.kanishksingh.dev/posts/${postId}/like`, {
 			method: "PATCH",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ const PostWidget = ({
 
 				{picturePath && (
 					<img
-						src={`https://socialite.kanishksingh.dev/assets/${picturePath}`}
+						src={`https://api.kanishksingh.dev/assets/${picturePath}`}
 						alt={picturePath}
 						width={"100%"}
 						height={"auto"}

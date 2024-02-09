@@ -17,7 +17,7 @@ const ProfilePage = () => {
 	const isMobileDevice = useMediaQuery("(max-width: 1000px)");
 
 	const getUser = async () => {
-		const res = await fetch(`https://socialite.kanishksingh.dev/user/${userId}`, {
+		const res = await fetch(`https://api.kanishksingh.dev/user/${userId}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},

@@ -7,7 +7,7 @@ const UserProfilePic = ({ image, size = "60px" }) => {
 				style={{ objectFit: "cover", borderRadius: "50%" }}
 				width={size}
 				height={size}
-				src={`https://socialite.kanishksingh.dev/assets/${image}`}
+				src={`https://api.kanishksingh.dev/assets/${image}`}
 				alt="user profile picture"
 			/>
 		</Box>

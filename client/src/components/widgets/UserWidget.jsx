@@ -27,7 +27,7 @@ const UserWidget = ({ userId, picturePath }) => {
 	const main = theme.palette.neutral.main;
 
 	const getUser = async () => {
-		const res = await fetch(`https://socialite.kanishksingh.dev/user/${userId}`, {
+		const res = await fetch(`https://api.kanishksingh.dev/user/${userId}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		const resData = await res.json();

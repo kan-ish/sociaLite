@@ -63,7 +63,7 @@ const AuthForm = () => {
 		}
 		formData.append("picturePath", values.image.name);
 
-		const res = await fetch("https://socialite.kanishksingh.dev/auth/register", {
+		const res = await fetch("https://api.kanishksingh.dev/auth/register", {
 			method: "POST",
 			body: formData,
 		});
@@ -78,7 +78,7 @@ const AuthForm = () => {
 	};
 
 	const login = async (values, onSubmitProps) => {
-		const res = await fetch("https://socialite.kanishksingh.dev/auth/login", {
+		const res = await fetch("https://api.kanishksingh.dev/auth/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(values),

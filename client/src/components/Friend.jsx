@@ -28,7 +28,7 @@ const Friend = ({
 
 	const patchFriend = async () => {
 		const res = await fetch(
-			`https://socialite.kanishksingh.dev/user/${_id}/${friendId}`,
+			`https://api.kanishksingh.dev/user/${_id}/${friendId}`,
 			{
 				method: "PATCH",
 				headers: {
