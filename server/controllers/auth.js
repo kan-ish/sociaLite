@@ -18,8 +18,15 @@ export const register = async (req, res) => {
 
 		const capitalizedFirstName = `${firstName[0].toUpperCase()}${firstName.slice(1)}`
 		const capitalizedLastName = `${lastName[0].toUpperCase()}${lastName.slice(1)}`
-		const capitalizedOccupation = `${occupation[0].toUpperCase()}${occupation.slice(1)}`
+		const lowerCaseEmail = email.toLowerCase()
 
+		const occupationWords = occupation.split(" ")
+		let capitalizedOccupation 
+		for (let word in occupationWords) {
+			capitalizedOccupation += word[0].toUpperCase() + word.slice(1) + " "
+		}
+		capitalizedOccupation.trim()
+		
 		const salt = await bcrypt.genSalt();
 		const pwdHash = await bcrypt.hash(password, salt);
 
@@ -27,7 +34,7 @@ export const register = async (req, res) => {
 			firstName: capitalizedFirstName,
 			lastName: capitalizedLastName,
 			password: pwdHash,
-			email,
+			email: lowerCaseEmail,
 			picturePath,
 			friends,
 			location,
@@ -48,7 +55,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const user = await User.findOne({ email: email });
+		const user = await User.findOne({ email: email.toLowerCase() });
 
 		if (!user)
 			return res.status(400).json({ message: "User does not exist." });
